@@ -21,7 +21,7 @@ const BottomTabNavigation: React.FC = () => {
   const TabBar = useCallback((props: BottomTabBarProps) => <BottomTab {...props} />, []);
   return (
     <Tab.Navigator tabBar={TabBar}>
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
       <Tab.Screen name="Notification" component={Notification} />
       <Tab.Screen name="Search" component={Home} />
       <Tab.Screen name="Community" component={Community} />
