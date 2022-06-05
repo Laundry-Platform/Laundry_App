@@ -1,13 +1,35 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import MapView, { LatLng, PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet } from 'react-native';
+import HomeMainComponents from './components';
 
-export interface HomeViewProps {}
+const mapStyle = StyleSheet.create({
+  style: {
+    width: '100%',
+    height: '100%',
+  },
+});
+export interface HomeViewProps {
+  currentPosition?: LatLng;
+}
 
-const HomeView: React.FC<HomeViewProps> = () => {
+const HomeView: React.FC<HomeViewProps> = ({ currentPosition }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home</Text>
-    </View>
+    <HomeMainComponents.Layout>
+      <HomeMainComponents.MapWrapper>
+        {currentPosition ? (
+          <MapView
+            style={mapStyle.style}
+            provider={PROVIDER_GOOGLE}
+            region={{
+              ...currentPosition,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+          />
+        ) : null}
+      </HomeMainComponents.MapWrapper>
+    </HomeMainComponents.Layout>
   );
 };
 
