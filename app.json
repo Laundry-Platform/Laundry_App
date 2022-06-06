@@ -4,10 +4,10 @@
     "slug": "Laundry_App",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/images/app/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/images/app/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,22 +21,19 @@
         "NSLocationWhenInUseUsageDescription": "빨래방 위치를 표시하는 지도를 사용하려면 위치 권한 허용이 필요합니다."
       },
       "config": {
-        "googleMapsApiKey": "_API_KEY_"
+        "googleMapsApiKey": "AIzaSyBI530ysstL9WaZGPBK_UgaSh9ZnmcA02Q"
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/app/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "config": {
         "googleMaps": {
-          "apiKey": "_API_KEY_"
+          "apiKey": "AIzaSyBI530ysstL9WaZGPBK_UgaSh9ZnmcA02Q"
         }
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
