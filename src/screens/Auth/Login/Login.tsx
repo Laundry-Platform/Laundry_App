@@ -1,10 +1,8 @@
-import { AuthStackScreenProps } from 'navigation/AuthNavigation';
+import { AppScreenProps } from 'navigation/AppNavigation';
 import React, { useState } from 'react';
 import LoginView, { LoginViewProps } from './LoginView';
 
-interface LoginProps {}
-
-const Login: React.FC<AuthStackScreenProps> = ({ navigation, route }) => {
+const Login: React.FC<AppScreenProps<'Login'>> = ({ navigation, route }) => {
   const [isPwSecure, setIsPwSecure] = useState<boolean>(true);
   const [isAutoLogin, setIsAutoLogin] = useState<boolean>(true);
 
@@ -59,6 +57,7 @@ const Login: React.FC<AuthStackScreenProps> = ({ navigation, route }) => {
     },
     loginButtonProps: {
       disabled: !(phoneNumber.length >= 10 && password.length >= 8),
+      onPress: () => route.params.setIsLogedIn(true),
     },
     createAccountProps: {
       onPress: e => {},
