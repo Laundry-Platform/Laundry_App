@@ -12,6 +12,7 @@ declare module 'styled-components/native' {
       fontblack: string;
       gray: string;
       red: string;
+      mainNotActive: string;
     };
   }
 }
