@@ -59,7 +59,7 @@ const Login: React.FC<AppScreenProps<'Login'>> = ({ navigation, route }) => {
     },
     loginButtonProps: {
       disabled: !(phoneNumber.length >= 10 && password.length >= 8),
-      onPress: () => route.params.setIsLogedIn(true),
+      onPress: () => route.params.setIsLoggedIn(true),
     },
     createAccountProps: {
       onPress: () => {

@@ -11,7 +11,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 type AppNavigationStackParamList = {
   BottomTab: undefined;
   Login: {
-    setIsLogedIn: (bool: boolean) => void;
+    setIsLoggedIn: (bool: boolean) => void;
   };
   PhoneNumberVerification: {
     flow: 'CreateAccount' | 'ForgotPassword';
@@ -22,12 +22,6 @@ type AppNavigationStackParamList = {
   SetUserInformation: undefined;
 };
 
-const HeaderLeft: React.FC = () => (
-  <Pressable>
-    <Image source={require('assets/images/chevron-left-black.png')} width={3} height={6} />
-  </Pressable>
-);
-
 export type AppNavigationStackProps<RouteName extends keyof AppNavigationStackParamList> =
   NativeStackNavigationProp<AppNavigationStackParamList, RouteName>;
 
@@ -37,7 +31,7 @@ export type AppScreenProps<RouteName extends keyof AppNavigationStackParamList> 
 const Stack = createNativeStackNavigator<AppNavigationStackParamList>();
 
 const AppNavigation: React.FC = () => {
-  const [isLogedIn, setIsLogedIn] = useState<boolean>(false);
+  const [isLogedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <Stack.Navigator>
@@ -52,7 +46,7 @@ const AppNavigation: React.FC = () => {
             name="Login"
             component={Login}
             options={{ headerShown: false }}
-            initialParams={{ setIsLogedIn }}
+            initialParams={{ setIsLoggedIn }}
           />
           <Stack.Screen
             name="PhoneNumberVerification"
