@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import AuthStyeldComponents from 'screens/Auth/styledComponents-shared';
 
 const LogoImage = styled.Image`
   width: 173.3px;
@@ -37,25 +38,10 @@ const FindPasswordText = styled.Text`
   color: ${props => props.theme.color.fontlight};
 `;
 
-const LoginButton = styled.Pressable`
-  height: 48px;
-  background-color: ${props =>
-    props.disabled ? props.theme.color.mainNotActive : props.theme.color.main};
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 24px;
-`;
-
-const LoginText = styled.Text`
-  font-size: 16px;
-  color: #fff;
-  letter-spacing: -0.8px;
-  font-weight: 800;
-`;
-
 const CreateAccount = styled.View`
   flex-direction: row;
   justify-content: center;
+  margin-top: 24px;
 `;
 
 const CreateAccountText = styled.Text`
@@ -89,8 +75,6 @@ const LoginComponents = {
   CheckBox,
   AutoLoginText,
   FindPasswordText,
-  LoginButton,
-  LoginText,
   CreateAccount,
   CreateAccountText,
   CreateAccountButtonText,

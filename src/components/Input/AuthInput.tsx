@@ -11,7 +11,7 @@ const InputBox = styled.View<{ isFocused: boolean }>`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-top: 8px;
+  border-radius: 4px;
 `;
 
 const IconBox = styled.Pressable`
@@ -36,7 +36,7 @@ const Icon = styled.Image<IconProps>`
 `;
 
 export interface AuthInputProps {
-  iconProps: IconProps & {
+  iconProps?: IconProps & {
     source: ImageSourcePropType;
     onPress?: VoidFunction;
   };
@@ -45,8 +45,6 @@ export interface AuthInputProps {
 
 const AuthInput: React.FC<AuthInputProps> = ({ iconProps, inputProps }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
-
-  const { onPress, ...icon } = iconProps;
 
   const textInputProps: Omit<TextInputProps, 'accessibilityRole'> = {
     ...inputProps,
@@ -63,11 +61,17 @@ const AuthInput: React.FC<AuthInputProps> = ({ iconProps, inputProps }) => {
   return (
     <InputBox isFocused={isFocused}>
       <Input {...textInputProps} />
-      {isFocused && (
-        <IconBox onPress={onPress}>
-          <Icon {...icon} />
-        </IconBox>
-      )}
+      {() => {
+        if (isFocused && iconProps) {
+          const { onPress, ...icon } = iconProps;
+          return (
+            <IconBox onPress={onPress}>
+              <Icon {...icon} />
+            </IconBox>
+          );
+        }
+        return null;
+      }}
     </InputBox>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import LoginView, { LoginViewProps } from './LoginView';
 
 const Login: React.FC<AppScreenProps<'Login'>> = ({ navigation, route }) => {
-  const [isPwSecure, setIsPwSecure] = useState<boolean>(true);
+  const [isPasswordSecure, setIsPasswordSecure] = useState<boolean>(true);
   const [isAutoLogin, setIsAutoLogin] = useState<boolean>(true);
 
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -30,18 +30,18 @@ const Login: React.FC<AppScreenProps<'Login'>> = ({ navigation, route }) => {
       iconProps: {
         height: 16,
         width: 24,
-        source: isPwSecure
+        source: isPasswordSecure
           ? require('assets/images/eye.png')
           : require('assets/images/eye-blue.png'),
         onPress: () => {
-          setIsPwSecure(prev => !prev);
+          setIsPasswordSecure(prev => !prev);
         },
       },
       inputProps: {
         placeholder: '비밀번호를 입력해 주세요',
         textContentType: 'password',
         passwordRules: '123',
-        secureTextEntry: isPwSecure,
+        secureTextEntry: isPasswordSecure,
         value: password,
         onChangeText: setPassword,
       },
@@ -52,15 +52,19 @@ const Login: React.FC<AppScreenProps<'Login'>> = ({ navigation, route }) => {
         : require('assets/images/check-circle-gray.png'),
       onPress: () => setIsAutoLogin(prev => !prev),
     },
-    findPasswordProps: {
-      onPress: e => {},
+    forgotPasswordProps: {
+      onPress: () => {
+        navigation.navigate('PhoneNumberVerification', { flow: 'ForgotPassword' });
+      },
     },
     loginButtonProps: {
       disabled: !(phoneNumber.length >= 10 && password.length >= 8),
       onPress: () => route.params.setIsLogedIn(true),
     },
     createAccountProps: {
-      onPress: e => {},
+      onPress: () => {
+        navigation.navigate('PhoneNumberVerification', { flow: 'CreateAccount' });
+      },
     },
   };
 
