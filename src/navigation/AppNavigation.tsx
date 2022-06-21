@@ -8,16 +8,18 @@ import { Image, Pressable, View } from 'react-native';
 import BottomTabNavigation from './BottomTabNavigation';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
+export type AuthFlow = 'CreateAccount' | 'ForgotPassword';
+
 type AppNavigationStackParamList = {
   BottomTab: undefined;
   Login: {
     setIsLoggedIn: (bool: boolean) => void;
   };
   PhoneNumberVerification: {
-    flow: 'CreateAccount' | 'ForgotPassword';
+    flow: AuthFlow;
   };
   SetPassword: {
-    flow: 'CreateAccount' | 'ForgotPassword';
+    flow: AuthFlow;
   };
   SetUserInformation: undefined;
 };
