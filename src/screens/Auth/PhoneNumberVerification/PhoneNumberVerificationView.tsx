@@ -25,6 +25,10 @@ export interface PhoneNumberVerificationViewProps {
     onChangeText: (str: string) => void;
   };
   timeLeft: string;
+  ReSendButtonProps: {
+    onPress: OnPress;
+    disabled: boolean;
+  };
 }
 
 const PhoneNumberVerificationView: React.FC<PhoneNumberVerificationViewProps> = ({
@@ -33,6 +37,7 @@ const PhoneNumberVerificationView: React.FC<PhoneNumberVerificationViewProps> = 
   certificationInputProps,
   showCertificationInput,
   timeLeft,
+  ReSendButtonProps,
 }) => {
   return (
     <AuthLayout>
@@ -55,8 +60,8 @@ const PhoneNumberVerificationView: React.FC<PhoneNumberVerificationViewProps> = 
             <PhoneNumberVerificationComponents.TimeText>
               {timeLeft}
             </PhoneNumberVerificationComponents.TimeText>
-            <PhoneNumberVerificationComponents.ReSendPressable>
-              <PhoneNumberVerificationComponents.ReSendText>
+            <PhoneNumberVerificationComponents.ReSendPressable {...ReSendButtonProps}>
+              <PhoneNumberVerificationComponents.ReSendText disabled={ReSendButtonProps.disabled}>
                 재전송
               </PhoneNumberVerificationComponents.ReSendText>
             </PhoneNumberVerificationComponents.ReSendPressable>

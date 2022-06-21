@@ -5,7 +5,7 @@ import PhoneNumberVerificationView, {
   PhoneNumberVerificationViewProps,
 } from './PhoneNumberVerificationView';
 
-const LIMIT_TIME_SEC = 10;
+const LIMIT_TIME_SEC = 180;
 
 const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'>> = ({
   navigation,
@@ -15,6 +15,7 @@ const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'
   const [certificationNumber, setCertificationNumber] = useState<string>('');
   const [showCertificationInput, setShowCertificationInput] = useState<boolean>(false);
   const [time, setTime] = useState<number>(LIMIT_TIME_SEC);
+  const [isResendDisabled, setIsResendDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     setCertificationNumber('');
@@ -68,6 +69,14 @@ const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'
       value: certificationNumber,
     },
     timeLeft,
+    ReSendButtonProps: {
+      disabled: isResendDisabled,
+      onPress: () => {
+        setTime(180);
+        setIsResendDisabled(true);
+        setTimeout(() => setIsResendDisabled(false), 20000);
+      },
+    },
   };
 
   return <PhoneNumberVerificationView {...props} />;

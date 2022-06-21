@@ -10,10 +10,11 @@ const ReSendPressable = styled.Pressable`
   flex: 1;
 `;
 
-const ReSendText = styled.Text`
+const ReSendText = styled.Text<{ disabled: boolean }>`
   font-size: 14px;
   letter-spacing: -0.7px;
-  color: ${props => props.theme.color.main};
+  color: ${props => (props.disabled ? props.theme.color.mainNotActive : props.theme.color.main)};
+
   font-weight: 500;
   text-align: right;
 `;
