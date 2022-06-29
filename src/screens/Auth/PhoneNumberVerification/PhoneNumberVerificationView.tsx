@@ -3,7 +3,6 @@ import AuthButton from 'components/Button/AuthButton';
 import AuthInput from 'components/Input/AuthInput';
 import AuthLayout from 'components/Layout/AuthLayout';
 import React from 'react';
-import { View } from 'react-native';
 import { OnPress } from 'types/common';
 import PhoneNumberVerificationComponents from './components';
 

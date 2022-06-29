@@ -1,11 +1,10 @@
 import { AppScreenProps } from 'navigation/AppNavigation';
-import { Text } from 'react-native';
 import React, { useEffect, useMemo, useState } from 'react';
 import PhoneNumberVerificationView, {
   PhoneNumberVerificationViewProps,
 } from './PhoneNumberVerificationView';
 
-const LIMIT_TIME_SEC = 180;
+const LimitTimeSec = 180;
 
 const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'>> = ({
   navigation,
@@ -14,12 +13,12 @@ const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [certificationNumber, setCertificationNumber] = useState<string>('');
   const [showCertificationInput, setShowCertificationInput] = useState<boolean>(false);
-  const [time, setTime] = useState<number>(LIMIT_TIME_SEC);
+  const [time, setTime] = useState<number>(LimitTimeSec);
   const [isResendDisabled, setIsResendDisabled] = useState<boolean>(false);
 
   useEffect(() => {
     setCertificationNumber('');
-    setTime(LIMIT_TIME_SEC);
+    setTime(LimitTimeSec);
     let interval: NodeJS.Timer | undefined;
     if (showCertificationInput) {
       interval = setInterval(() => {

@@ -4,7 +4,6 @@ import Login from 'screens/Auth/Login/Login';
 import PhoneNumberVerification from 'screens/Auth/PhoneNumberVerification/PhoneNumberVerification';
 import SetPassword from 'screens/Auth/SetPassword/SetPassword';
 import SetUserInformation from 'screens/Auth/SetUserInformation/SetUserInformation';
-import { Image, Pressable, View } from 'react-native';
 import BottomTabNavigation from './BottomTabNavigation';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
