@@ -35,13 +35,24 @@ const Icon = styled.Image<IconProps>`
   height: ${props => `${props.height}px`};
 `;
 
+interface InputIconProps extends IconProps {
+  source: ImageSourcePropType;
+  onPress?: VoidFunction;
+}
+
 export interface AuthInputProps {
-  iconProps?: IconProps & {
-    source: ImageSourcePropType;
-    onPress?: VoidFunction;
-  };
+  iconProps?: InputIconProps;
   inputProps?: TextInputProps;
 }
+
+const InputIcon: React.FC<InputIconProps> = props => {
+  const { onPress, ...icon } = props;
+  return (
+    <IconBox onPress={onPress}>
+      <Icon {...icon} />
+    </IconBox>
+  );
+};
 
 const AuthInput: React.FC<AuthInputProps> = ({ iconProps, inputProps }) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -61,17 +72,7 @@ const AuthInput: React.FC<AuthInputProps> = ({ iconProps, inputProps }) => {
   return (
     <InputBox isFocused={isFocused}>
       <Input {...textInputProps} />
-      {() => {
-        if (isFocused && iconProps) {
-          const { onPress, ...icon } = iconProps;
-          return (
-            <IconBox onPress={onPress}>
-              <Icon {...icon} />
-            </IconBox>
-          );
-        }
-        return null;
-      }}
+      {isFocused && iconProps ? <InputIcon {...iconProps} /> : null}
     </InputBox>
   );
 };

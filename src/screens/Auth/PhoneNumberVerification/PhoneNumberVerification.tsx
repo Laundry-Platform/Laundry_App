@@ -68,7 +68,7 @@ const PhoneNumberVerification: React.FC<AppScreenProps<'PhoneNumberVerification'
       value: certificationNumber,
     },
     timeLeft,
-    ReSendButtonProps: {
+    reSendButtonProps: {
       disabled: isResendDisabled,
       onPress: () => {
         setTime(180);

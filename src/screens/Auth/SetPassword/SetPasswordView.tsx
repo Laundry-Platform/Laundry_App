@@ -1,13 +1,42 @@
-import { AuthFlow } from 'navigation/AppNavigation';
+import { Padding } from 'components/Basic';
+import AuthButton from 'components/Button/AuthButton';
+import AuthInput, { AuthInputProps } from 'components/Input/AuthInput';
+import AuthLayout from 'components/Layout/AuthLayout';
 import React from 'react';
-import { Text } from 'react-native';
+import { PressEventHandler } from 'types/react-native/event';
+import SetPasswordComponents from './components';
 
 export interface SetPasswordViewProps {
-  flow: AuthFlow;
+  setPasswordText: string;
+  passwordInputProps: AuthInputProps;
+  passwordCheckInputProps: AuthInputProps;
+  buttonProps: {
+    buttonProps: {
+      onPress: PressEventHandler;
+      disabled: boolean;
+    };
+    buttonText: string;
+  };
 }
 
-const SetPasswordView: React.FC<SetPasswordViewProps> = ({ flow }) => {
-  return <Text>{flow === 'CreateAccount' ? '비밀번호 만들기' : '새 비밀번호 설정'}</Text>;
+const SetPasswordView: React.FC<SetPasswordViewProps> = ({
+  setPasswordText,
+  buttonProps,
+  passwordCheckInputProps,
+  passwordInputProps,
+}) => {
+  return (
+    <AuthLayout>
+      <SetPasswordComponents.SetPasswordText>
+        {setPasswordText}
+      </SetPasswordComponents.SetPasswordText>
+      <AuthInput {...passwordInputProps} />
+      <Padding bottom={8} />
+      <AuthInput {...passwordCheckInputProps} />
+      <Padding bottom={20} />
+      <AuthButton {...buttonProps} />
+    </AuthLayout>
+  );
 };
 
 export default SetPasswordView;

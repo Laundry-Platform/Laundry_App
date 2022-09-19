@@ -41,6 +41,10 @@ const AppNavigation: React.FC = () => {
           screenOptions={{
             headerBackTitle: '',
             headerTintColor: '#000',
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: '#fff',
+            },
           }}
         >
           <Stack.Screen
@@ -63,7 +67,13 @@ const AppNavigation: React.FC = () => {
               headerTitle: route.params.flow === 'ForgotPassword' ? '비밀번호 찾기' : '회원가입',
             })}
           />
-          <Stack.Screen name="SetUserInformation" component={SetUserInformation} />
+          <Stack.Screen
+            name="SetUserInformation"
+            component={SetUserInformation}
+            options={{
+              headerTitle: '회원가입',
+            }}
+          />
         </Stack.Group>
       ) : (
         <Stack.Screen

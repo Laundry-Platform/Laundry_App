@@ -1,9 +1,10 @@
+import { AppScreenProps } from 'navigation/AppNavigation';
 import React from 'react';
+import SetUserInformationView, { SetUserInformationViewProps } from './SetUserInformationView';
 
-interface SetUserInformationProps {}
-
-const SetUserInformation: React.FC<SetUserInformationProps> = () => {
-  return <div>SetUserInformation</div>;
+const SetUserInformation: React.FC<AppScreenProps<'SetUserInformation'>> = () => {
+  const props: SetUserInformationViewProps = {};
+  return <SetUserInformationView {...props} />;
 };
 
 export default SetUserInformation;
