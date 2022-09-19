@@ -4,9 +4,10 @@ import Login from 'screens/Auth/Login/Login';
 import PhoneNumberVerification from 'screens/Auth/PhoneNumberVerification/PhoneNumberVerification';
 import SetPassword from 'screens/Auth/SetPassword/SetPassword';
 import SetUserInformation from 'screens/Auth/SetUserInformation/SetUserInformation';
-import { Image, Pressable, View } from 'react-native';
 import BottomTabNavigation from './BottomTabNavigation';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+export type AuthFlow = 'CreateAccount' | 'ForgotPassword';
 
 type AppNavigationStackParamList = {
   BottomTab: undefined;
@@ -14,10 +15,10 @@ type AppNavigationStackParamList = {
     setIsLoggedIn: (bool: boolean) => void;
   };
   PhoneNumberVerification: {
-    flow: 'CreateAccount' | 'ForgotPassword';
+    flow: AuthFlow;
   };
   SetPassword: {
-    flow: 'CreateAccount' | 'ForgotPassword';
+    flow: AuthFlow;
   };
   SetUserInformation: undefined;
 };
@@ -40,6 +41,10 @@ const AppNavigation: React.FC = () => {
           screenOptions={{
             headerBackTitle: '',
             headerTintColor: '#000',
+            headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: '#fff',
+            },
           }}
         >
           <Stack.Screen
@@ -62,7 +67,13 @@ const AppNavigation: React.FC = () => {
               headerTitle: route.params.flow === 'ForgotPassword' ? '비밀번호 찾기' : '회원가입',
             })}
           />
-          <Stack.Screen name="SetUserInformation" component={SetUserInformation} />
+          <Stack.Screen
+            name="SetUserInformation"
+            component={SetUserInformation}
+            options={{
+              headerTitle: '회원가입',
+            }}
+          />
         </Stack.Group>
       ) : (
         <Stack.Screen
